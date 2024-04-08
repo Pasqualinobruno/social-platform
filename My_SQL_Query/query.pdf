@@ -1,0 +1,41 @@
+
+1 Seleziona gli utenti che hanno postato almeno un video
+
+  SELECT `users`.`username`, `users`.`email` , `medias`.`type`, `medias`.`path`, `medias`.`created_at`
+  FROM `medias`
+  JOIN `users`
+  ON `medias`.`user_id` = `users`.`id`
+  WHERE `medias`.`type` = "video";
+
+2 Seleziona tutti i post senza Like (13)
+ SELECT `posts`.`id`, `posts`.`title`
+ FROM `posts`
+ LEFT JOIN `likes` ON `posts`.`id` = `likes`.`post_id`
+ WHERE `likes`.`post_id` IS NULL;
+
+3 Conta il numero di like per ogni post (165)
+  1 Il risultato è 152 e sono tutti i post che hanno almeno un like
+    SELECT COUNT(DISTINCT `posts`.`id`)
+    FROM `posts`
+    LEFT JOIN `likes` ON `posts`.`id` = `likes`.`post_id`
+    WHERE `likes`.`post_id` IS NOT NULL;
+  2 Il risultato è 165 sono tutti i post anche dove il like non è presente
+        SELECT COUNT(DISTINCT `posts`.`id`)
+        FROM `posts`
+        LEFT JOIN `likes` ON `posts`.`id` = `likes`.`post_id`;
+
+4 Ordina gli utenti per il numero di media caricati (25) 
+
+    SELECT `users`.`username`
+    FROM `medias`
+    JOIN `users` ON `medias`.`user_id` = `users`.`id`
+    GROUP BY `users`.`username`
+    ORDER BY COUNT(`medias`.`id`);
+
+5 Ordina gli utenti per totale di likes ricevuti nei loro posts (25) 
+    SELECT `users`.`username`, COUNT(`likes`.`created_at`) AS `total_likes`
+    FROM `users`
+    JOIN `posts` ON `users`.`id` = `posts`.`user_id`
+    LEFT JOIN `likes` ON `posts`.`id` = `likes`.`post_id`
+    GROUP BY `users`.`id`
+    ORDER BY `total_likes` DESC;
