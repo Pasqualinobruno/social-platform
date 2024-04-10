@@ -1,0 +1,11 @@
+h2 {
+    text-align: center;
+    color: green;
+    margin-bottom: 1rem;
+}
+
+header {
+    justify-content: space-evenly;
+    background: aquamarine;
+    color: green;
+}
