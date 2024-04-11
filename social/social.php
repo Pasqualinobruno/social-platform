@@ -1,12 +1,5 @@
 <?php
-//1 ci connettiamo al database
-define('DB_SERVERNAME', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
-define('DB_NAME', 'db-social-platform');
-
-//2 mi collego al databese
-$connection = new mysqli(DB_SERVERNAME, DB_USERNAME, DB_PASSWORD, DB_NAME);
+require_once '../../social-platform/social/database.php';
 
 //3 controllo che non ci siano errori
 if ($connection && $connection->connect_error) {
@@ -58,7 +51,7 @@ if ($result && $result->num_rows === 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
