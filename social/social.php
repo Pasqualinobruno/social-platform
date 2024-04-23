@@ -60,6 +60,7 @@ if ($result && $result->num_rows === 0) {
         <form action="" method="post" class="d-flex">
             <input type="text" name="utents" id="untents" class="from-control" placeholder="Ricerca Utente" value="">
             <button type="submit" class="btn btn-success ms-2">Cerca</button>
+            <a href="../Models/models.php">Post</a>
         </form>
     </header>
 
